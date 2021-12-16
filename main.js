@@ -59,6 +59,10 @@ $('#formUsuarios').submit(function(e){
     $('#modalCRUD').modal('hide');											     			
 });
 
+$("#btnRegister").click(function(){
+      
+});
+
 $('#formConsulta').submit(function(e){                        
     e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
     titulo = $.trim($('#titulo').val());    
