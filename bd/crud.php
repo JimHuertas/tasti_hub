@@ -3,19 +3,17 @@ include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
+$id = (isset($_POST['id'])) ? $_POST['id'] : '';
+$usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
+$titulo = (isset($_POST['titulo'])) ? $_POST['titulo'] : '';
+$descripcion = (isset($_POST['descripcion'])) ? $_POST['descripcion'] : '';
+
 $username = (isset($_POST['username'])) ? $_POST['username'] : '';
 $first_name = (isset($_POST['first_name'])) ? $_POST['first_name'] : '';
 $last_name = (isset($_POST['last_name'])) ? $_POST['last_name'] : '';
 $gender = (isset($_POST['gender'])) ? $_POST['gender'] : '';
 $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 $status = (isset($_POST['status'])) ? $_POST['status'] : '';
-
-
-$id = (isset($_POST['id'])) ? $_POST['id'] : '';
-$usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
-$titulo = (isset($_POST['titulo'])) ? $_POST['titulo'] : '';
-$descripcion = (isset($_POST['descripcion'])) ? $_POST['descripcion'] : '';
-
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';

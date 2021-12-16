@@ -65,6 +65,7 @@ $("#btnRegister").click(function(){
 
 $('#formConsulta').submit(function(e){                        
     e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+    
     usuario = $.trim($('#usuario').val()); 
     titulo = $.trim($('#titulo').val());    
     descripcion = $.trim($('#descripcion').val());    
@@ -94,7 +95,7 @@ $('#formConsulta').submit(function(e){
 
 $("#btnNuevaConsulta").click(function(){
     opcion = 7; //alta           
-    user_id=null;
+    id=null;
     $("#formConsulta").trigger("reset");
     $(".modal-header").css( "background-color", "#17a2b8");
     $(".modal-header").css( "color", "white" );
@@ -107,8 +108,8 @@ $(document).on("click", ".btnEditar", function(){
     opcion = 6;//editar
     fila = $(this).closest("tr");	        
     id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		            
-    titulo = fila.find('td:eq(1)').text();
-    usuario = fila.find('td:eq(2)').text();
+    titulo = fila.find('td:eq(2)').text();
+    usuario = fila.find('td:eq(1)').text();
     descripcion = fila.find('td:eq(3)').text();
     $("#id").val(id);
     $("#usuario").val(usuario);
@@ -124,18 +125,18 @@ $(document).on("click", ".btnEditar", function(){
 //Borrar
 $(document).on("click", ".btnBorrar", function(){
     fila = $(this);           
-    user_id = parseInt($(this).closest('tr').find('td:eq(0)').text()) ;		
-    opcion = 3; //eliminar        
-    var respuesta = confirm("¿Está seguro de borrar el registro "+user_id+"?");                
+    id = parseInt($(this).closest('tr').find('td:eq(0)').text()) ;		
+    opcion = 9; //eliminar        
+    var respuesta = confirm("¿Está seguro de borrar el registro "+id+"?");                
     if (respuesta) {            
         $.ajax({
-          url: "bd/crud.php",
-          type: "POST",
-          datatype:"json",    
-          data:  {opcion:opcion, id:id},    
-          success: function() {
-              tablaConsulta.row(fila.parents('tr')).remove().draw();                  
-           }
+            url: "bd/crud.php",
+            type: "POST",
+            datatype:"json",    
+            data:  {opcion:opcion, id:id},    
+            success: function() {
+                tablaConsulta.row(fila.parents('tr')).remove().draw();                  
+            }
         });	
     }
  });

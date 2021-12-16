@@ -1,5 +1,5 @@
 CREATE DATABASE usuario;
-USE usuarios_db;
+USE usuario_db;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";

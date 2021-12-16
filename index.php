@@ -146,7 +146,7 @@
             </div>
         <form id="formConsulta">    
             <div class="modal-body">
-            <div class="row">
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                         <label for="" class="col-form-label">Usuario:</label>
