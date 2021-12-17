@@ -39,7 +39,7 @@ tablaConsulta = $('#tablaConsulta').DataTable({
 
 var fila; //captura la fila, para editar o eliminar
 //submit para el Alta y Actualización
-$('#formUsuarios').submit(function(e){                         
+/*$('#formUsuarios').submit(function(e){                         
     e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
     username = $.trim($('#username').val());    
     first_name = $.trim($('#first_name').val());
@@ -57,7 +57,7 @@ $('#formUsuarios').submit(function(e){
            }
         });			        
     $('#modalCRUD').modal('hide');											     			
-});
+});*/
 
 $("#btnRegister").click(function(){
       
@@ -65,14 +65,14 @@ $("#btnRegister").click(function(){
 
 $('#formConsulta').submit(function(e){                        
     e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+    usuario = $.trim($('#usuario').val()); 
     titulo = $.trim($('#titulo').val());    
-    descripcion = $.trim($('#descripcion').val());
-    curso = $.trim($('#curso').val());                               
+    descripcion = $.trim($('#descripcion').val());    
         $.ajax({
           url: "bd/crud.php",
           type: "POST",
           datatype:"json",    
-          data:  {id:id, usuario:usuario, titulo:titulo, descripcion:descripcion, opcion:7},    
+          data:  {id:id, usuario:usuario, titulo:titulo, descripcion:descripcion, opcion:opcion},    
           success: function(data) {
             tablaConsulta.ajax.reload(null, false);
         }
@@ -82,7 +82,7 @@ $('#formConsulta').submit(function(e){
 
 
 //para limpiar los campos antes de dar de Alta una Persona
-$("#btnNuevo").click(function(){
+/*$("#btnNuevo").click(function(){
     opcion = 7; //alta           
     user_id=null;
     $("#formUsuarios").trigger("reset");
@@ -90,10 +90,10 @@ $("#btnNuevo").click(function(){
     $(".modal-header").css( "color", "white" );
     $(".modal-title").text("Alta de usuario");
     $('#modalCRUD').modal('show');	    
-});
+});*/
 
 $("#btnNuevaConsulta").click(function(){
-    opcion = 1; //alta           
+    opcion = 7; //alta           
     user_id=null;
     $("#formConsulta").trigger("reset");
     $(".modal-header").css( "background-color", "#17a2b8");
@@ -111,14 +111,14 @@ $(document).on("click", ".btnEditar", function(){
     usuario = fila.find('td:eq(2)').text();
     descripcion = fila.find('td:eq(3)').text();
     $("#id").val(id);
-    $("#titulo").val(titulo);
     $("#usuario").val(usuario);
+    $("#titulo").val(titulo);
     $("#descripcion").val(descripcion);
 
     $(".modal-header").css("background-color", "#007bff");
     $(".modal-header").css("color", "white" );
     $(".modal-title").text("Editar Consulta");		
-    $('#consultaCRUD').modal('show');		   
+    $('#modalCRUD').modal('show');		   
 });
 
 //Borrar

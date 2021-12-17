@@ -62,7 +62,7 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 6:        
-        $consulta = "UPDATE consulta SET id='$id', usuario='$usuario', titulo='$titulo', descripcion='$descripcion' WHERE id='$id' ";		
+        $consulta = "UPDATE consulta SET usuario='$usuario', titulo='$titulo', descripcion='$descripcion' WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
             
@@ -72,7 +72,7 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 7:
-        $consulta = "INSERT INTO consulta (usuario, titulo, descripcion, gender) VALUES('$usuario', '$titulo', '$descripcion') ";			
+        $consulta = "INSERT INTO consulta (usuario, titulo, descripcion) VALUES('$usuario', '$titulo', '$descripcion') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
         

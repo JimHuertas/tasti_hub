@@ -25,19 +25,21 @@
   <body> 
     
 
-     <header>
-     <h3 class='text-center'></h3>
-     </header>    
-    
+    <header>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">            
-            <button id="btnNuevo" type="button" class="btn btn-info" data-toggle="modal"><i class="material-icons">library_add</i></button>    
-            </div>    
-        </div>    
-    </div>    
-    <br>  
-
+            <div class="form-group">    
+                <h3 class='text-center'>TASTI</h3>
+            </div>
+            <div class="form-group">          
+                <button id="btnRegister" type="button" class="btn btn-info" data-toggle="modal">Register</button>      
+            </div>  
+        </div>
+          
+    </div> 
+     
+     </header>    
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-12">            
