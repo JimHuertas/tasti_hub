@@ -27,15 +27,24 @@
         <h3 class='text-center'></h3>
     </header>
 
-    <div class="container">
+    <!--- ><div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <button id="btnNuevo" type="button" class="btn btn-info" data-toggle="modal"><i class="material-icons">library_add</i></button>
+                <button id="btnRegister" type="button" class="btn btn-info" data-toggle="modal"><i class="material-icons">library_add</i></button>
             </div>
         </div>
     </div>
+    <!-->
+
+    <!--- ><div class="container">
+        <div class="row">
+            <div class="form-group">          
+                <button id="btnRegister" type="button" class="btn btn-info" data-toggle="modal">Register</button>      
+            </div>  
+        </div>  
+    </div> <!-->
     <br>
-    <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ayuto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

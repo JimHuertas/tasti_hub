@@ -35,10 +35,11 @@
                 <button id="btnRegister" type="button" class="btn btn-info" data-toggle="modal">Register</button>      
             </div>  
         </div>
-          
     </div> 
+
+    
      
-     </header>    
+    </header>    
     
     <div class="container">
         <div class="row">

@@ -59,8 +59,34 @@ var fila; //captura la fila, para editar o eliminar
     $('#modalCRUD').modal('hide');											     			
 });*/
 
+$('#formUsuarios').submit(function(e){                        
+    e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+    username = $.trim($('#username').val());    
+    first_name = $.trim($('#first_name').val());
+    last_name = $.trim($('#last_name').val());    
+    gender = $.trim($('#gender').val());    
+    password = $.trim($('#password').val());
+    status = $.trim($('#status').val());                            
+        $.ajax({
+          url: "bd/crud.php",
+          type: "POST",
+          datatype:"json",    
+          data:  {user_id:user_id, username:username, first_name:first_name, last_name:last_name, gender:gender, password:password ,status:status ,opcion:opcion},    
+          success: function(data) {
+            tablaUsuarios.ajax.reload(null, false);
+           }
+        });			        
+    $('#ayuto').modal('hide');											     			
+});
+
 $("#btnRegister").click(function(){
-      
+    opcion = 7; //alta           
+    user_id=null;
+    $("#formUsuarios").trigger("reset");
+    $(".modal-header").css( "background-color", "#17a2b8");
+    $(".modal-header").css( "color", "white" );
+    $(".modal-title").text("Nueva Usuario");
+    $('#ayuto').modal('show');	   
 });
 
 $('#formConsulta').submit(function(e){                        
