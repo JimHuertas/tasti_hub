@@ -3,6 +3,11 @@ include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
+$id = (isset($_POST['id'])) ? $_POST['id'] : '';
+$usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
+$titulo = (isset($_POST['titulo'])) ? $_POST['titulo'] : '';
+$descripcion = (isset($_POST['descripcion'])) ? $_POST['descripcion'] : '';
+
 #$username = (isset($_POST['username'])) ? $_POST['username'] : '';
 $cui = (isset($_POST['cui'])) ? $_POST['cui'] : '';
 $first_name = (isset($_POST['first_name'])) ? $_POST['first_name'] : '';
@@ -13,13 +18,6 @@ $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 $email = (isset($_POST['email'])) ? $_POST['email'] : '';
 #$status = (isset($_POST['status'])) ? $_POST['status'] : '';
 $anio = (isset($_POST['anio'])) ? $_POST['anio'] : '';
-
-
-$id = (isset($_POST['id'])) ? $_POST['id'] : '';
-$usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
-$titulo = (isset($_POST['titulo'])) ? $_POST['titulo'] : '';
-$descripcion = (isset($_POST['descripcion'])) ? $_POST['descripcion'] : '';
-
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
@@ -32,7 +30,7 @@ switch($opcion){
         $consulta = "INSERT INTO usuarios (cui, first_name, last_name, telefono, password, email, anio) VALUES('$cui', '$first_name', '$last_name', '$telefono', '$password', '$email','$anio') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
-        
+    
         $consulta = "SELECT * FROM usuarios ORDER BY user_id DESC LIMIT 1";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
@@ -47,7 +45,6 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-        break;
     case 3:        
         $consulta = "DELETE FROM usuarios WHERE user_id='$user_id' ";		
         $resultado = $conexion->prepare($consulta);
@@ -97,6 +94,12 @@ switch($opcion){
         $resultado->execute();                           
         break;
 
+    case 10:
+        $consulta = "SELECT * FROM usuarios WHERE user_id = 'user_id' AND password='password' ";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);                           
+        break;
 }
 
 print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
