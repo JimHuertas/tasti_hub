@@ -91,6 +91,12 @@ switch($opcion){
         $resultado->execute();                           
         break;
 
+    case 10:
+        $consulta = "SELECT * FROM usuarios WHERE user_id = 'user_id' AND password='password' ";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);                           
+        break;
 }
 
 print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
