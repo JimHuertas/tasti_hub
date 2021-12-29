@@ -26,18 +26,78 @@
     
 
     <header>
+    <h3 class='text-center'>TASTI</h3><br>
     <div class="container">
         <div class="row">
-            <div class="form-group">    
-                <h3 class='text-center'>TASTI</h3>
-            </div>
-            <div class="form-group">          
+            <div class="form-group">             
                 <button id="btnRegister" type="button" class="btn btn-info" data-toggle="modal">Register</button>      
             </div>  
         </div>
     </div> 
 
-    
+    <div class="modal fade" id="ayuto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="formUsuarios">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">CUI:</label>
+                                    <input type="text" class="form-control" id="cui">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">Nombres</label>
+                                    <input type="text" class="form-control" id="first_name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">Apellidos</label>
+                                    <input type="text" class="form-control" id="last_name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">Telefono</label>
+                                    <input type="text" class="form-control" id="telefono">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">Contraseña</label>
+                                    <input type="text" class="form-control" id="password">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">Email</label>
+                                    <input type="text" class="form-control" id="email">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="" class="col-form-label">Año</label>
+                                    <input type="text" class="form-control" id="anio">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-dark">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
      
     </header>    
     

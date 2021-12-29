@@ -3,12 +3,16 @@ include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
-$username = (isset($_POST['username'])) ? $_POST['username'] : '';
+#$username = (isset($_POST['username'])) ? $_POST['username'] : '';
+$cui = (isset($_POST['cui'])) ? $_POST['cui'] : '';
 $first_name = (isset($_POST['first_name'])) ? $_POST['first_name'] : '';
 $last_name = (isset($_POST['last_name'])) ? $_POST['last_name'] : '';
-$gender = (isset($_POST['gender'])) ? $_POST['gender'] : '';
+#$gender = (isset($_POST['gender'])) ? $_POST['gender'] : '';
+$telefono = (isset($_POST['telefono'])) ? $_POST['telefono'] : '';
 $password = (isset($_POST['password'])) ? $_POST['password'] : '';
-$status = (isset($_POST['status'])) ? $_POST['status'] : '';
+$email = (isset($_POST['email'])) ? $_POST['email'] : '';
+#$status = (isset($_POST['status'])) ? $_POST['status'] : '';
+$anio = (isset($_POST['anio'])) ? $_POST['anio'] : '';
 
 
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
@@ -25,7 +29,7 @@ switch($opcion){
     case 0:
         break;
     case 1:
-        $consulta = "INSERT INTO usuarios (username, first_name, last_name, gender, password, status) VALUES('$username', '$first_name', '$last_name', '$gender', '$password', '$status') ";			
+        $consulta = "INSERT INTO usuarios (cui, first_name, last_name, telefono, password, email, anio) VALUES('$cui', '$first_name', '$last_name', '$telefono', '$password', '$email','$anio') ";			
         $resultado = $conexion->prepare($consulta);
         $resultado->execute(); 
         
@@ -35,7 +39,7 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);       
         break;    
     case 2:        
-        $consulta = "UPDATE usuarios SET username='$username', first_name='$first_name', last_name='$last_name', gender='$gender', password='$password', status='$status' WHERE user_id='$user_id' ";		
+        $consulta = "UPDATE usuarios SET cui='$cui', first_name='$first_name', last_name='$last_name', telefono='$telefono', password='$password', email='$email', anio='$anio' WHERE user_id='$user_id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();        
         
