@@ -21,7 +21,23 @@ tablaUsuarios = $('#tablaUsuarios').DataTable({
         {"data": "email"},
         //{"data": "status"},
         {"data": "anio"},
-        {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+        //{"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+        {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button><button class='btn btn-primary btn-sm btnResponder'>Responder</i></button></div></div>"}
+    ]
+});
+
+tablaRespuesta = $('#tablaRespuesta').DataTable({  
+    "ajax":{            
+        "url": "../bd/crud.php", 
+        "method": 'POST', //usamos el metodo POST
+        "data":{opcion: 11}, //enviamos opcion 5 para que haga un SELECT
+        "dataSrc":""
+    },
+    "columns":[
+        {"data": "id_ct"},
+        {"data": "cui_tutor"},
+        {"data": "id_consulta"},
+        {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button><button class='btn btn-primary btn-sm btnResponder'>Responder</i></button></div></div>"}
     ]
 });
 
@@ -37,11 +53,12 @@ tablaConsulta = $('#tablaConsulta').DataTable({
         {"data": "usuario"},
         {"data": "titulo"},
         {"data": "descripcion"},
-        {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+        {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button><button class='btn btn-primary btn-sm btnResponder'>Responder</i></button></div></div>"}
     ]
 });   
 
-var fila; //captura la fila, para editar o eliminar
+
+var fila; //captura la fila, para editar , eliminar o responder
 //submit para el Alta y Actualización
 $('#formUsuarios').submit(function(e){                        
     e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
@@ -65,14 +82,19 @@ $('#formUsuarios').submit(function(e){
     $('#ayuto').modal('hide');											     			
 });
 
-$("#btnRegister").click(function(){
-    opcion = 1; //alta           
-    user_id=null;
-    $("#formUsuarios").trigger("reset");
-    $(".modal-header").css( "background-color", "#17a2b8");
-    $(".modal-header").css( "color", "white" );
-    $(".modal-title").text("Nueva Usuario");
-    $('#ayuto').modal('show');	   
+$('#formRespuesta').submit(function(e){                        
+    e.preventDefault(); 
+    cui_tutor = $.trim($('#cui_tutor').val());                        
+        $.ajax({
+          url: "../bd/crud.php",
+          type: "POST",
+          datatype:"json",    
+          data:  {id_ct:id_ct, cui_tutor:cui_tutor, id_consulta:id_consulta, opcion:opcion},    
+          success: function(data) {
+            //tablaUsuarios.ajax.reload(null, false);
+           }
+        });                 
+    $('#modal-respuesta').modal('hide');                                                          
 });
 
 $('#formConsulta').submit(function(e){                        
@@ -104,6 +126,16 @@ $('#formConsulta').submit(function(e){
     $(".modal-title").text("Alta de usuario");
     $('#modalCRUD').modal('show');	    
 });*/
+
+$("#btnRegister").click(function(){
+    opcion = 1; //alta           
+    user_id=null;
+    $("#formUsuarios").trigger("reset");
+    $(".modal-header").css( "background-color", "#17a2b8");
+    $(".modal-header").css( "color", "white" );
+    $(".modal-title").text("Nueva Usuario");
+    $('#ayuto').modal('show');     
+});
 
 $("#btnNuevaConsulta").click(function(){
     opcion = 7; //alta           
@@ -138,7 +170,7 @@ $(document).on("click", ".btnEditar", function(){
 $(document).on("click", ".btnBorrar", function(){
     fila = $(this);           
     id = parseInt($(this).closest('tr').find('td:eq(0)').text()) ;		
-    opcion = 9; //eliminar        
+    opcion = 9; //eliminar    
     var respuesta = confirm("¿Está seguro de borrar el registro "+id+"?");                
     if (respuesta) {            
         $.ajax({
@@ -152,5 +184,29 @@ $(document).on("click", ".btnBorrar", function(){
         });	
     }
     });
-     
-});    
+});
+
+//Responder
+$(document).on("click", ".btnResponder", function(){                    
+    fila = $(this);    
+    //id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID     
+    id_consulta = parseInt($(this).closest('tr').find('td:eq(0)').text()) ;      
+    opcion = 11;//responder   
+    id_ct=null;
+    $("#formRespuesta").trigger("reset");
+    $(".modal-header").css("background-color", "#007bff");
+    $(".modal-header").css("color", "white" );
+    $(".modal-title").text("Responder a la pregunta");      
+    $('#modal-respuesta').modal('show');         
+});
+
+$("#btnRegister").click(function(){
+    opcion = 1; //alta           
+    user_id=null;
+    $("#formUsuarios").trigger("reset");
+    $(".modal-header").css( "background-color", "#17a2b8");
+    $(".modal-header").css( "color", "white" );
+    $(".modal-title").text("Nueva Usuario");
+    $('#ayuto').modal('show');     
+});
+

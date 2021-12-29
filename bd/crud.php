@@ -4,12 +4,16 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
+$id_consulta = (isset($_POST['id_consulta'])) ? $_POST['id_consulta'] : '';
+
 $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
 $titulo = (isset($_POST['titulo'])) ? $_POST['titulo'] : '';
 $descripcion = (isset($_POST['descripcion'])) ? $_POST['descripcion'] : '';
 
 #$username = (isset($_POST['username'])) ? $_POST['username'] : '';
 $cui = (isset($_POST['cui'])) ? $_POST['cui'] : '';
+$cui_tutor = (isset($_POST['cui_tutor'])) ? $_POST['cui_tutor'] : '';
+
 $first_name = (isset($_POST['first_name'])) ? $_POST['first_name'] : '';
 $last_name = (isset($_POST['last_name'])) ? $_POST['last_name'] : '';
 #$gender = (isset($_POST['gender'])) ? $_POST['gender'] : '';
@@ -99,6 +103,17 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);                           
+        break;
+    case 11:        
+        $consulta = "INSERT INTO consulta_tutor(cui_tutor, id_consulta) VALUES('$cui_tutor', '$id_consulta') ";
+        
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();       
+        /*
+        $consulta = "SELECT * FROM usuarios ORDER BY user_id DESC LIMIT 1";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);   */
         break;
 }
 
