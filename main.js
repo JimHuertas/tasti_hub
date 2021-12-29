@@ -11,12 +11,16 @@ tablaUsuarios = $('#tablaUsuarios').DataTable({
     },
     "columns":[
         {"data": "user_id"},
-        {"data": "username"},
+        {"data": "cui"},
+        //{"data": "username"},
         {"data": "first_name"},
         {"data": "last_name"},
-        {"data": "gender"},
+        {"data": "telefono"},
+        //{"data": "gender"},
         {"data": "password"},
-        {"data": "status"},
+        {"data": "email"},
+        //{"data": "status"},
+        {"data": "anio"},
         {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
     ]
 });
@@ -59,8 +63,36 @@ var fila; //captura la fila, para editar o eliminar
     $('#modalCRUD').modal('hide');											     			
 });*/
 
+$('#formUsuarios').submit(function(e){                        
+    e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+    cui = $.trim($('#cui').val());    
+    first_name = $.trim($('#first_name').val());
+    last_name = $.trim($('#last_name').val());    
+    //gender = $.trim($('#gender').val());    
+    telefono = $.trim($('#telefono').val()); 
+    password = $.trim($('#password').val());
+    email = $.trim($('#email').val());
+    anio = $.trim($('#anio').val());                            
+        $.ajax({
+          url: "bd/crud.php",
+          type: "POST",
+          datatype:"json",    
+          data:  {user_id:user_id, cui:cui, first_name:first_name, last_name:last_name, telefono:telefono, password:password , email:email ,anio:anio ,opcion:opcion},    
+          success: function(data) {
+            tablaUsuarios.ajax.reload(null, false);
+           }
+        });			        
+    $('#ayuto').modal('hide');											     			
+});
+
 $("#btnRegister").click(function(){
-      
+    opcion = 1; //alta           
+    user_id=null;
+    $("#formUsuarios").trigger("reset");
+    $(".modal-header").css( "background-color", "#17a2b8");
+    $(".modal-header").css( "color", "white" );
+    $(".modal-title").text("Nueva Usuario");
+    $('#ayuto').modal('show');	   
 });
 
 $('#formConsulta').submit(function(e){                        
